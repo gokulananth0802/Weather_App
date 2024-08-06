@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<style>
+    *{
+        margin:0px;
+        color:white;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+    .container{
+        width: 300px;
+        height:400px;
+        padding:30px;
+        margin-top:100px;
+        background-color:rgba(255,255,255,0.1);
+        border:2px solid rgba(255,255,255,0.2);
+        border-radius: 20px;
+        position:relative;
+    }
+    h1{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    input{
+        border:none;
+        border-radius:20px;
+        height:30px;
+        width:13rem;
+        font-size:15px;
+        padding-left:15px;
+        color:black;
+    }
+    button{
+        border-radius: 20px;
+        border:none;
+        height:30px;
+        background-color: rgb(0, 255, 0);
+        font-size: 14px;
+        font-weight: 600;
+        color:black;
+    }
+    button:hover{
+        border:2px solid rgb(200, 255, 0);
+    }
+    .content{
+        margin-top:10px;
+        text-align: center;
+    }
+    .temperature{
+        margin-top:15px;
+    }
+    p{
+        margin:5px 0px;
+    }
+    .weather-type{
+        filter: drop-shadow(0px 0px 50px rgba(255,255,255,0.35))
+    }
+    .hum{
+        display:flex;
+        align-items: center;
+        width:130px;
+        height:50px;
+        border:2px solid rgba(255,255,255,0.2);
+        border-radius:10px;
+        position:absolute;
+        bottom:15px;
+    }
+    .hum img{
+        padding-left: 10px ;
+    }
+    .hum p{
+        display: flex;
+        flex-direction: column;
+        padding-left:10px;
+    }
+    .win{
+        display:flex;
+        align-items: center;
+        width:130px;
+        height:50px;
+        border:2px solid rgba(255,255,255,0.2);
+        border-radius:10px;
+        position:absolute;
+        bottom:15px;
+        right:27px;
+    }
+    .win img{
+        padding-left: 10px ;
+    }
+    .win p{
+        display: flex;
+        flex-direction: column;
+        padding-left:5px;
+    }
+    .temp{
+        font-size:37px;
+        font-weight: 600;
+    }
+    h3{
+        font-weight:400;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+            <input type="text" placeholder="Search city" class="input-city">
+        <button onclick="callweather()">Search</button>
+        
+        <div class="content">
+            <img width="150px" class="weather-type">
+                <p class="temp"><span class="temperature">25</span> °C</p>
+                <h3 class="city-name">New York</h3>
+                <div class="hum">
+                    <img src="humide.png" width="30px" height="30px">
+                    <p>Humidity <span class="Humidity">--:--</span></p>
+                </div>
+                <div class="win">
+                    <img src="wind.png" width="30px" height="30px">
+                    <p>Wind-Speed<span class="Windspeed">--:--</span></p>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    
+    const MyAPI = "838605c3f9daea89b157310967505144";
+    var def;
+    function searchCity(city){
+
+        return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${MyAPI}&units=metric`)
+        .then(response => response.json());
+    }
+        function weatherCondition(type){
+            const images =['atmosphere2.png','clear2.png','clouds2.png','drizzle2.png','humidity2.png','snow2.png','thunderstorm2.png','windspeed2.png'];
+            const imageMap = {
+                'Atmosphere':0,'Clear':1,'Clouds':2,'Drizzle':3,'Humidity':4,'Snow':5,'Thunderstorm':6,'Windspeed':7
+            };
+            if(imageMap.hasOwnProperty(type)){
+                document.querySelector('.weather-type').src = images[imageMap[type]];
+            }
+        }
+        function setDefaultCity(){
+            const defaultCity = "New York";
+            searchCity(defaultCity)
+            .then((def) => {
+                document.querySelector('.city-name').innerText = def.name;
+                const weatherType =def.weather[0].main;
+                document.querySelector('.weather-type').innerText = weatherCondition(weatherType);
+                document.querySelector('.temperature').innerText = def.main.temp;
+                document.querySelector('.Humidity').innerText = `${def.main.humidity} %`;
+                document.querySelector('.Windspeed').innerText = `${def.wind.speed} km/h`;
+                console.log(def);
+            }) 
+        }
+        window.onload = setDefaultCity;
+        function callweather(){
+            var city = document.querySelector('.input-city');
+        searchCity(city.value)
+        .then((data) => {
+                document.querySelector('.city-name').innerText = data.name;
+                const weatherType =data.weather[0].main;
+                document.querySelector('.weather-type').innerText = weatherCondition(weatherType);
+                document.querySelector('.temperature').innerText = data.main.temp;
+        })
+        .catch(err => {
+          console.log(err);
+          alert('wrong city name or API issue');
+        });
+        city.value = '';
+    }
+</script>
+</html>
