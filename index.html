@@ -183,7 +183,7 @@
         <div class="content">
             <img class="weather-type" width="150px">
                 <p class="weather-type1"></p>
-                <p class="temp"><span class="temperature"></span> °C</p>
+                <p class="temp"><span class="temperature"></span></p>
                 <h3><span class="city-name"></span></h3>
                 <div class="hum">
                     <img src="humide.png" width="30px" height="30px">
@@ -225,7 +225,7 @@
                 const weatherType =def.weather[0].main;
                 document.querySelector('.weather-type').innerText = weatherCondition(weatherType);
                 document.querySelector('.weather-type1').innerText = weatherType;
-                document.querySelector('.temperature').innerText = def.main.temp;
+                document.querySelector('.temperature').innerText = `${def.main.temp}°C`;
 <!doctype html>
 <html lang="en">
 <head>
