@@ -6,170 +6,122 @@
     <title>Weather App</title>
 </head>
 <style>
-    *{
-        margin:0px;
-        color:rgba(22,33,95,255);
-          text-shadow:1px 1px 2px white,
-                      -1px -1px 2px white,
-                      -1px 1px 2px white,
-                      1px -1px 2px white;  
-                      } 
-                      
-    body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background:url('./weather-bg.jpg');
-        background-size:cover;
-        
-    }
-    .container{
-        width: 340px;
-        height:400px;
-        padding:30px;
-        margin-top:130px;
-        background-color:rgba(255,255,255,0.1);
-        border:2px solid rgba(219,202,238,255);
-        border-radius: 20px;
-        position:relative;
-        backdrop-filter:blur(7px);
-    }
-    h1{
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .input{
-      text-align:center;
-    }
-    input{
-        border:none;
-        border-radius:20px;
-        height:30px;
-        width:13rem;
-        font-size:15px;
-        padding-left:15px;
-        color:black;
-    }
-    button{
-        border-radius: 20px;
-        border:none;
-        height:30px;
-        background-color: rgba(22,33,95);
-        padding:0px 10px;
-        font-size: 14px;
-        font-weight: 600;
-        color:white;
-        text-shadow:none;
-        border:2px solid rgb(0, 255, 0);
-    }
-    button:hover{
-        border:2px solid rgb(200, 255, 0);
-    }
-    .content{
-      display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin-top:10px;
-        text-align: center;
-        width:100%;
-    }
-    .content .temperature{
-      margin-left:13px;
-    }
-    .weather-type{
-        filter: drop-shadow(0px 0px 50px rgba(255,255,255,0.35))
-    }
-    .hum{
-        display:flex;
-        align-items: center;
-        width:140px;
-        height:50px;
-        padding:0px 10px;
-        box-shadow:3px 3px 0px rgba(219,202,238,255);
-        border-radius:10px;
-        position:absolute;
-        bottom:15px;
-        left:27px;
-        background:linear-gradient(-45deg,rgba(71,80,149,255),rgba(165,177,233))
-    }
-    .hum p{
-        display: flex;
-        flex-direction: column;
-        padding-left:10px;
-  text-shadow:-1px -1px 2px white,1.5px 1.5px 0px rgba(219,202,238,255);
-       color:rgba(22,33,95);
-       font-weight:800;
-       letter-spacing:1px;
-    }
-    .hum p span{
-      text-shadow:-1px -1px 2px white,1.5px 1.5px 0px rgba(219,202,238,255);
-       color:rgba(22,33,95);
-    }
-    .win{
-        display:flex;
-        align-items: center;
-        width:140px;
-        height:50px;
-        padding:0px 10px;
-        box-shadow:3px 3px 0px rgba(219,202,238,255);
-        border-radius:10px;
-        position:absolute;
-        bottom:15px;
-        right:27px;
-        background:linear-gradient(-45deg,rgba(71,80,149,255),rgba(165,177,233))
-    }
-    .win p{
-        display: flex;
-        flex-direction: column;
-        padding-left:5px;
-        text-shadow:-1px -1px 2px white,1.5px 1.5px 0px rgba(219,202,238,255);
-       color:rgba(22,33,95);
-       font-weight:800;
-    }
-    .win p span{
-      text-shadow:-1px -1px 2px white,1.5px 1.5px 0px rgba(219,202,238,255);
-       color:rgba(22,33,95);
-    }
-    .temp{
-        font-size:37px;
-        font-weight: 600;
-        position:absolute;
-        bottom:100px;
-        left:27%;
-    }
-    h3{
-      width:100%;
-        justify-content:center;
-        font-weight:700;
-        position:absolute;
-        bottom:80px;
-    }
-    .weather-type1{
-      font-size:20px;
-      position:absolute;
-      top:290px;
-    }
-   @media all and (max-width:600px){
-     .container{
-       height:450px;
-     }
-     .hum{
-       height:70px;
-       width:150px;
-       left:15px;
-     }
-     .win{
-       height:70px;
-       width:150px;
-       right:15px;
-     }
-     .temp{
-       bottom:130px;
-     }
-     h3{
-       bottom:105px;
-     }
-   }
+   *{
+    margin:0px;
+    color:white;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:url('weatherapp-bg2.webp');
+    background-size:cover;
+}
+.container{
+    width: 300px;
+    height:400px;
+    padding:30px;
+    margin-top:70px;
+    /* background-image:linear-gradient(-45deg,rgba(55, 248, 174, 0.7),rgba(99, 95, 222, 0.7)); */
+    background-color:rgba(0,0,0,0.4);
+    backdrop-filter:blur(3px);
+    border-radius: 20px;
+    box-shadow:1px 1px 8px rgb(255, 105, 157),
+               -1px -1px 8px rgb(255, 105, 157),
+               -1px 1px 8px rgb(255, 105, 157),
+               1px -1px 8px rgb(255, 105, 157);
+    position:relative;
+}
+.input-field{
+    display:flex;
+    justify-content: space-around;
+}
+h1{
+    text-align: center;
+    margin-bottom: 30px;
+}
+input{
+    border:none;
+    border-radius:20px;
+    height:30px;
+    width:14rem;
+    font-size:15px;
+    padding-left:15px;
+    color:black;
+}
+button{
+    border-radius: 50%;
+    border:none;
+    height:30px;
+    width:30px;
+    background-color: rgb(0, 255, 0);
+    color:black;
+    position:relative;
+}
+button i{
+    font-size:20px;
+    color:black;
+    position:absolute;
+    left:5px;
+    top:5px;
+}
+.content{
+    margin-top:10px;
+    text-align: center;
+}
+.temperature{
+    margin-top:15px;
+}
+p{
+    margin:5px 0px;
+}
+.weather-type{
+    filter: drop-shadow(0px 0px 50px rgba(255,255,255,0.35))
+}
+.hum{
+    display:flex;
+    align-items: center;
+    width:130px;
+    height:50px;
+    background-image:linear-gradient(-25deg,rgba(55, 248, 174, 0.7),rgba(54, 47, 248, 0.854));
+    border-radius:10px;
+    position:absolute;
+    bottom:15px;
+}
+.hum img{
+    padding-left: 10px ;
+}
+.hum p{
+    display: flex;
+    flex-direction: column;
+    padding-left:10px;
+}
+.win{
+    display:flex;
+    align-items: center;
+    width:130px;
+    height:50px;
+    background-image:linear-gradient(-25deg,rgba(0, 255, 157, 0.776),rgba(54, 47, 248, 0.854));
+    border-radius:10px;
+    position:absolute;
+    bottom:15px;
+    right:27px;
+}
+.win img{
+    padding-left: 10px ;
+}
+.win p{
+    display: flex;
+    flex-direction: column;
+    padding-left:5px;
+}
+.temp{
+    font-size:37px;
+    font-weight: 600;
+}
+h3{
+    font-weight:400;
+}
 </style>
 <body>
     <div class="container">
